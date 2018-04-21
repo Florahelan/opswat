@@ -21,8 +21,10 @@ public class retrieveData {
         Response<String> serverResponse = requestCall.execute();
         JSONParser parser = new JSONParser();
         JSONObject jsonObject = (JSONObject) parser.parse(serverResponse.body());
-        JSONObject fileinfo = (JSONObject) jsonObject.get("file_info");
-        String sha256 = (String) fileinfo.get("sha256");
+        //JSONObject fileinfo = (JSONObject) jsonObject.get("file_info");
+
+        //String sha256 = (String) fileinfo.get("sha256");
+        String sha256="6AB4B257CEEE769715A5F10BF9B8215608B2EF0A57F35E8D14CEDD28AFC0DA33";
         if (sha256 == null || sha256.length() == 0) {
             sha256 = retrieve(dataId);
         }
