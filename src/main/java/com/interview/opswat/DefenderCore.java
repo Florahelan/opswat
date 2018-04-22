@@ -9,6 +9,7 @@ import java.util.Scanner;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+//Main class
 public class DefenderCore {
 
     public static void main(String... args) throws IOException, ParseException {

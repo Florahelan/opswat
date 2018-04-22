@@ -39,7 +39,7 @@ public class FileProcessor {
     }
 
     /**
-     * The main method which does the following functionalities
+     * The main method which does the following functionality
      *
      * 1. Given a file , checks if there is a hash for the file already existing. If it does it retrieves the hash
      * and hits the lookupResultsByHash api to get the scan results.

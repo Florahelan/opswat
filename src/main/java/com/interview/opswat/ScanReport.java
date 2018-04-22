@@ -5,7 +5,7 @@ import org.json.simple.JSONObject;
 import java.util.Iterator;
 
 /**
- * Scan report is dispalyed from the retrieveResults by hash json object
+ * Scan report is displayed from the retrieveResults by hash json object
  */
 
 public class ScanReport {
