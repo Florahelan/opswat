@@ -11,17 +11,14 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class DefenderCore {
 
-    public static final String API_URL = "https://api.metadefender.com/";
-
     public static void main(String... args) throws IOException, ParseException {
-
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_URL)
+                .baseUrl("https://api.metadefender.com/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
-        OpswatApiClient opswat = retrofit.create(OpswatApiClient.class);
+        OpswatApiClient opswatApiClient = retrofit.create(OpswatApiClient.class);
 
-        FileProcessor processor = new FileProcessor(opswat);
+        FileProcessor processor = new FileProcessor(opswatApiClient);
         String quit = "quit";
         while (true) {
             Scanner scanner = new Scanner(System.in);

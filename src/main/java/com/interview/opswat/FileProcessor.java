@@ -19,9 +19,8 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 /**
- * Based on dataId, the Json object is stored. Hash(Sha256) is displayed form this json object
+ * The central class which takes care of the retreiving the results of a particular file given to upload.
  */
-
 public class FileProcessor {
 
     private ApiKey API_KEY = Utils.retrieveApiKey();
@@ -39,6 +38,18 @@ public class FileProcessor {
         gson = new Gson();
     }
 
+    /**
+     * The main method which does the following functionalities
+     *
+     * 1. Given a file , checks if there is a hash for the file already existing. If it does it retrieves the hash
+     * and hits the lookupResultsByHash api to get the scan results.
+     * 2. If the hash is not found the file is uploaded, and the dataId for the file is retrieved . This data Id is
+     * then used to retrieve the hash and the final results by hitting the lookupResultsByDataId api .
+     *
+     * @param filePath the file path
+     * @return the Scan report.
+     * @throws Exception any exception.
+     */
     public ScanReport generateResults(File filePath) throws Exception {
         if (!cache.containsKey(filePath.getPath())) {
             //uploadFile the file
@@ -54,6 +65,9 @@ public class FileProcessor {
         }
     }
 
+    /*
+     * It retrieves the hash given the dataId
+     */
     private String retrieveHash(String dataId) throws Exception {
         String sha256;
         Call<String> requestCall = apiClient.retrieveDataId(dataId, API_KEY);
@@ -76,6 +90,9 @@ public class FileProcessor {
         return sha256;
     }
 
+     /*
+     * It retrieves the Scan Report given the Hash.
+     */
     private ScanReport getResultsFromHash(String hash) throws Exception {
         Call<String> requestCall = apiClient.retrieveHash(hash, API_KEY);
         Response<String> serverResponse = requestCall.execute();
@@ -90,6 +107,9 @@ public class FileProcessor {
     }
 
 
+    /*
+     * The method uploads the given file to the remote server.
+     */
     private JSONObject uploadFile(File fileRef) throws Exception {
         if (!fileRef.exists()) {
             throw new IOException(" The File Path is not found " + fileRef.getAbsolutePath());

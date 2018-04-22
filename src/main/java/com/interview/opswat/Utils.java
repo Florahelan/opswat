@@ -1,6 +1,7 @@
 package com.interview.opswat;
 
 import com.google.gson.Gson;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
@@ -8,7 +9,8 @@ import java.io.FileReader;
 public class Utils {
 
     /**
-     *Reads api.json file and retrieves the api key
+     * Reads api.json file and retrieves the api key
+     *
      * @return apikey
      */
 
@@ -16,7 +18,7 @@ public class Utils {
         try {
             Gson gson = new Gson();
             ApiKey apiKey = gson.fromJson(new FileReader(
-                            "/Users/florahelan/Documents/Intellij_Programs/Interview/src/main/resources/api.json"),
+                            "src/main/resources/api.json"),
                     ApiKey.class);
             return apiKey;
         } catch (FileNotFoundException ex) {
