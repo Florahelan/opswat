@@ -1,3 +1,5 @@
+
+//Creates an instance for APIKey
 public class ApiKey {
 
     public final String api_key;

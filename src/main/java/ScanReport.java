@@ -2,6 +2,8 @@ import org.json.simple.JSONObject;
 
 import java.util.Iterator;
 
+//This Class display the data from Json object
+
 public class ScanReport {
 
     private final JSONObject results;
@@ -11,17 +13,19 @@ public class ScanReport {
     }
 
     public void display() {
-        System.out.println("filename: " + (JSONObject) results.get("display_name"));
-
-        String status=(String)results.get("scan_all_result_a");
-
-        if(status=="No threat detected"){
-            System.out.println("overall_status: " + "Clean" );
-        }else {
-            System.out.println("overall_status: " + "Infected" );
-        }
         JSONObject scanResults = (JSONObject) results.get("scan_results");
         JSONObject scanDetails = (JSONObject) scanResults.get("scan_details");
+        JSONObject fileinfo = (JSONObject) results.get("file_info");
+        String status = (String) scanResults.get("scan_all_result_a");
+        System.out.println("filename: " + (String)fileinfo.get("display_name"));
+        String clean = "No threat detected";
+        String infected = "threat found";
+        if (status.equals(clean)) {
+            System.out.println("overall_status: " + "Clean");
+        } else if (status.equals(infected)) {
+            System.out.println("overall_status: " + "Infected");
+        }
+        System.out.println("\n");
         Iterator iterator = scanDetails.keySet().iterator();
         while (iterator.hasNext()) {
             String engine = (String) iterator.next();

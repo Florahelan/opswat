@@ -6,10 +6,9 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
+//All the api's are defined here
+
 public interface OpswatApis {
-
-    //All apis should be defined here
-
      /*
      To Upload a file and retrieve data_id
      */
@@ -28,7 +27,7 @@ public interface OpswatApis {
             @Header("apikey") ApiKey apiKey);
 
     /*
-     To retrieve report for the hash if filepath is already present
+     To retrieve report for the hash
      */
 
     @GET("v2/hash/{hash}")

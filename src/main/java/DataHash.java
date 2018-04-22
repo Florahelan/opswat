@@ -7,13 +7,14 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class Hash {
+//R
+public class DataHash {
 
     final static ApiKey API_KEY = Utils.retrieveApiKey();
 
     private final OpswatApis apis;
 
-    public Hash(OpswatApis apis) {
+    public DataHash(OpswatApis apis) {
         this.apis = apis;
     }
 

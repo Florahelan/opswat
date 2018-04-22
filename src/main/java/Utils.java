@@ -6,7 +6,7 @@ import java.io.FileReader;
 
 public class Utils {
 
-    //This class takes care of reading the api.json file and retrieving the key .
+    //This class takes care of reading the api.json file and retrieving the api key .
     public static ApiKey retrieveApiKey() {
         try {
             Gson gson = new Gson();

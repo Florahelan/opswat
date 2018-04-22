@@ -7,6 +7,11 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Response;
 
+/**this class retrives the hash based dataId
+ *
+ *
+ */
+
 public class retrieveData {
 
     final static ApiKey API_KEY = Utils.retrieveApiKey();

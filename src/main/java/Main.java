@@ -1,5 +1,6 @@
 import org.json.simple.parser.ParseException;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -22,13 +23,14 @@ public class Main {
         String quit = "quit";
         while (true) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter the filename path or quit to exit ");
-            String userinput = scanner.nextLine();
-            if (quit.equalsIgnoreCase(userinput)) {
+            System.out.println("Enter the filename or quit to exit ");
+            String fileName = scanner.nextLine();
+            File scanFile = new File("src/main/resources/" + fileName);
+            if (quit.equalsIgnoreCase(fileName)) {
                 System.out.println("Bye");
                 break;
             }
-           core.validating(userinput, null);
+           core.validating(scanFile, null);
         }
     }
 }

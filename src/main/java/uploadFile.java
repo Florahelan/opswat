@@ -10,6 +10,10 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
+
+/**
+ * This class uploaded the file and JsonObject is returned with the dataId
+ */
 public class uploadFile {
     final static ApiKey API_KEY = Utils.retrieveApiKey();
     private final OpswatApis apis;
@@ -18,14 +22,14 @@ public class uploadFile {
         this.apis = apis;
     }
 
-    public JSONObject upload(String path) throws IOException, ParseException {
-        System.out.println("path is: "  + path);
-        File fileRef = new File(path);
-        if(!fileRef.exists()) {
-            throw new IOException(" The File Path is not found " + fileRef.getAbsolutePath());
+    public JSONObject upload(File filePath) throws IOException, ParseException {
+        System.out.println("path is: "  + filePath);
+
+        if(!filePath.exists()) {
+            throw new IOException(" The File Path is not found " + filePath.getAbsolutePath());
         }
         //todo get the MediaType from the file
-        RequestBody requestbody = RequestBody.create(MediaType.parse("text/plain"), fileRef);
+        RequestBody requestbody = RequestBody.create(MediaType.parse("text/plain"), filePath);
         Call<String> requestCall = apis.uploadFile(API_KEY, requestbody);
         Response<String> serverResponse = requestCall.execute();
         System.out.println("server response is: " + serverResponse.body());
